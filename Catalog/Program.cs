@@ -1,3 +1,6 @@
+using Catalog.Services;
+using Common.EventBus.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +9,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// service
+builder.Services.AddScoped<IEventTestService, EventTestService>();
+builder.Services.AddSingleton<IEventBus, EventBus>();
 
 var app = builder.Build();
 
